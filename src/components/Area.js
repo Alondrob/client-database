@@ -27,21 +27,34 @@ const Area = () => {
         }
     })
 
-    
+    const secondFiltered = filteredData.filter((val) => val.length > 0)
 
-    console.log(filteredData);
+
+
+    const clickHandler = () => {
+        let zipArray = filteredData.map((value) => {
+            return value.zipcode
+        })
+        
+        console.log(filteredData)
+    }
+
+    let dataArray = clickHandler();
+    console.log(dataArray);
    
     
     return (
         <div>
-            <select onChange={onSelect} value={borrough}>
+            <select onChange={onSelect} onClick={clickHandler} value={borrough}>
                 {data.map((val) =>
                     <option>{val.name.toUpperCase()} </option>
                 )} 
             </select>
-            <li>
-                {filteredData.map(value => <p>{value.zipcode}</p>)}
-            </li>
+           
+                <div>
+                    {dataArray}
+                </div>
+          
             
             
             
