@@ -1,59 +1,72 @@
 import { data } from "../utils/data";
-
+import './Area.css';
 import React, {useState} from 'react'
 import Neighborhood from "./Neighborhood";
 import { getValue } from "@testing-library/user-event/dist/utils";
+import Zipcode from "./Zipcode";
 
 const Area = () => {
 
     const [borrough, setBorrough] = useState("")
+    const [color, setColor] = useState(false)
     // const [neighborhoods, setNeighborhoods] = useState([]);
    
     
-
- console.log(data)
+const handleClick = (e) => {
+    console.log(e)
+    setColor(!color);
+}
+ 
             
 
     const onSelect = (e) => {
         setBorrough(e.target.value);
     }
 
-    const filteredData = data.map((value) => {
+    const filteredData = data.filter((value) => {
         if (value.name === borrough.toLowerCase()){
-            return value.neighborhoods
+            return value
         }
         else {
-            return ""
+            return;
         }
     })
 
-    const secondFiltered = filteredData.filter((val) => val.length > 0)
+    const secondFiltered = filteredData[0]["neighborhoods"].sort();
 
-
+    console.log(secondFiltered)
 
     const clickHandler = () => {
         let zipArray = filteredData.map((value) => {
             return value.zipcode
         })
         
-        console.log(filteredData)
+        console.log(secondFiltered)
     }
 
-    let dataArray = clickHandler();
-    console.log(dataArray);
+    let buttonColor = color ? "red" : "white";
+
    
-    
     return (
         <div>
-            <select onChange={onSelect} onClick={clickHandler} value={borrough}>
+            <select  onChange={onSelect} onClick={clickHandler} value={borrough}>
                 {data.map((val) =>
                     <option>{val.name.toUpperCase()} </option>
                 )} 
-            </select>
+            </select><br></br><br></br>
+            
+            {secondFiltered.map((val) => <div>
+                <button className={color ? "colorTrue": "colorFalse"} onClick={handleClick}>
+                
+                    {val.zipcode}<br></br>
+
+                  
+                
+            </button>  <br></br>  <br></br>
+            </div>)}
+          
            
-                <div>
-                    {dataArray}
-                </div>
+               
           
             
             

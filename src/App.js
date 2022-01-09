@@ -8,7 +8,7 @@ import Rooms from './components/Rooms';
 const App = () => {
 
   const submitForm = (e) => {
-
+    e.preventDefault();
   }
   return (
     <div className="App">
