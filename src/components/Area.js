@@ -4,6 +4,7 @@ import React, {useState} from 'react'
 import Neighborhood from "./Neighborhood";
 import { getValue } from "@testing-library/user-event/dist/utils";
 import Zipcode from "./Zipcode";
+import Basket from "./Basket";
 
 const Area = () => {
 
@@ -44,7 +45,7 @@ const handleClick = (e) => {
         console.log(secondFiltered)
     }
 
-    let buttonColor = color ? "red" : "white";
+    
 
    
     return (
@@ -54,16 +55,10 @@ const handleClick = (e) => {
                     <option>{val.name.toUpperCase()} </option>
                 )} 
             </select><br></br><br></br>
+            <Basket/>
             
-            {secondFiltered.map((val) => <div>
-                <button className={color ? "colorTrue": "colorFalse"} onClick={handleClick}>
-                
-                    {val.zipcode}<br></br>
-
-                  
-                
-            </button>  <br></br>  <br></br>
-            </div>)}
+            {secondFiltered.map((val) => <Neighborhood neighborhood={val} />)}   
+        </div>
           
            
                
@@ -74,7 +69,7 @@ const handleClick = (e) => {
            
                 
             
-        </div>
+        
     )
 }
 
