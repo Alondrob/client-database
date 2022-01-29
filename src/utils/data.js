@@ -2,10 +2,7 @@
    export const data = 
     
      [     
-           {
-                "Borough": "",
-                "Neghborhood": ""
-            },
+         
            {
                "Borough": "Bronx",
                "Neghborhood": "Baychester"

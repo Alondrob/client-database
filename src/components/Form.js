@@ -21,6 +21,25 @@ const Form = () => {
 
     const [bdr, setBdr] = useState([]);
     const [color, setColor] = useState(false)
+
+    
+
+    const handleSubmit = () => {
+       let data =   {
+                        name: name,
+                        email: email, 
+                        phone: phone, 
+                        budget: budget, 
+                        area: area,
+                        neighborhoods: neighborhoods,
+                        bdr: bdr
+                    }
+
+        let obj = { method: 'post', headers: { 'contentype': 'application/json', accept:'application/json'}, body: JSON.stringify(data)}
+
+        fetch(url, obj)
+        .then(() => {window.location.href="/submited"})
+    }
     
     
   
@@ -40,8 +59,8 @@ const Form = () => {
             return alert("This Apt size already has been chosen")
         }
         setBdr([...bdr, value])
-        setColor(!color)
-        console.log(color)
+        // setColor(!color)
+        // console.log(color)
     }
 
 
@@ -73,9 +92,9 @@ const handleCheckbox = (value) => {
         console.log('hello')
     }
 
-    let trueColor = (color ? "colored" : "white")
+    
 
-    console.log(trueColor)
+    
 
   return (
 <Container>
@@ -127,7 +146,7 @@ const handleCheckbox = (value) => {
                   />
                   
                   <h4>What Size Apartment Are You Looking For ?</h4>
-                  {size.map((value, i) => <ToggleButton className={trueColor} onClick={() => handleClick(value)}> {size[i]} </ToggleButton>)}
+                  {size.map((value, i) => <ToggleButton  selected={bdr.includes(value)} onClick={() => handleClick(value)}> {size[i]} </ToggleButton>)}
 
 
                   <h3>Where Would You Want To Live ?</h3>
@@ -175,7 +194,7 @@ const handleCheckbox = (value) => {
                   )}
                   
                       
-              <ToggleButton> Felix Che Tam S Piskami ? </ToggleButton>
+           
 
           </form>
 
