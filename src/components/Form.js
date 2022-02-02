@@ -61,6 +61,7 @@ const Form = () => {
         setBdr([...bdr, value])
         // setColor(!color)
         // console.log(color)
+        //console
     }
 
 
